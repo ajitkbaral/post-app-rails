@@ -9,7 +9,7 @@ module Api
             end
 
             def show
-                post = get_article params[:id]
+                post = get_post params[:id]
                 if post.eql? nil
                     render json: { status: 'error', message: 'Cannot find the post' }, status: :not_found
                 else
@@ -51,10 +51,10 @@ module Api
             end
 
             private def posts_params
-                params.permit(:title, :body)
+                params.permit(:title, :description)
             end
 
-            private def post_response(article)
+            private def post_response(post)
                 data = {
                     id: post.id,
                     title: post.title,
